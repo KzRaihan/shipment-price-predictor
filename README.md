@@ -1,2 +1,31 @@
-# shipment-price-predictor
-🚚 End-to-end MLOps project for predicting shipment prices using a modular machine learning pipeline. Includes data ingestion, validation, transformation, model training, evaluation, and deployment with Docker and FastAPI/Flask.
+# Shipment-Price-Prediction-ML-Project
+
+
+## How to run
+Before you run this project make sure you have MongoDB Atlas account and you have the shipping dataset into it.
+
+Step 1. Cloning the repository.
+```
+git clone https://github.com/KzRaihan/shipment-price-predictor.git
+```
+Step 2. Create a conda environment.
+```
+conda create -n shipment python=3.11 -y
+```
+```
+conda activate shipment
+````
+Step 3. Install the requirements 
+```
+pip install -r requirements.txt
+```
+
+
+# Workflow
+
+1. Constants
+2. config_entity
+3. artifacts_entity
+4. Components
+5. pipeline
+6. main.py
