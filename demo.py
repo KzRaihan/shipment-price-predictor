@@ -1,16 +1,9 @@
-# loginging demo
-# -----------------------------------------------------------------
-# from shipment.logger import logging
+from shipment.utils.main_utils import MainUtils
 
-# logging.info("This is Test logging Message from demo.py")
+# create an object of MainUtils is a class
+obj = MainUtils() 
 
-
-# exception demo
-# -----------------------------------------------------------------
-# from shipment.exception import shippingException
-# import sys # work: find the error of which line 
-
-# try:
-#     a = 1 / 0
-# except Exception as e:
-#     raise shippingException(e, sys) from e
+# call the read_yaml_files
+# syntax: obj.read_yaml_file(file_location)
+data = obj.read_yaml_file("config/model.yaml")
+print(data)
