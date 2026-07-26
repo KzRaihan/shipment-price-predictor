@@ -1,3 +1,4 @@
+import os
 import shutil
 import sys
 from typing import Dict, Tuple, List
@@ -44,6 +45,26 @@ class MainUtils:
                 np.save(file_obj, array)
             logging.info("Exited the save_numpy_array_data method of MainUtils class")
             return file_path
+
+        except Exception as e:
+            raise shippingException(e, sys) from e
+    def save_object(self, file_path: str, obj) -> str:
+        logging.info("Entered the save_object method of MainUtils class")
+        try:
+            os.makedirs(os.path.dirname(file_path), exist_ok=True)
+            with open(file_path, "wb") as file_obj:
+                dill.dump(obj, file_obj)
+            logging.info("Exited the save_object method of MainUtils class")
+            return file_path
+
+        except Exception as e:
+            raise shippingException(e, sys) from e
+
+    def load_object(self, file_path: str):
+        logging.info("Entered the load_object method of MainUtils class")
+        try:
+            with open(file_path, "rb") as file_obj:
+                return dill.load(file_obj)
 
         except Exception as e:
             raise shippingException(e, sys) from e
