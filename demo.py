@@ -1,6 +1,5 @@
-from shipment.configuration.mongo_operations import MongoDBOperation 
+from shipment.pipline.training_pipeline import TrainPipeline
 
-obj = MongoDBOperation()
+obj = TrainPipeline()
 
-df = obj.get_collection_as_dataframe(db_name="Shipment_Kz", collection_name="shipment_collection")
-
+obj.run_pipeline()
