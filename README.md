@@ -21,7 +21,7 @@ pip install -r requirements.txt
 ```
 
 
-# Workflow
+# Updates Workflow
 
 1. Constants
 2. config_entity
