@@ -20,3 +20,6 @@ class DataTransformationArtifacts:
     transformed_test_file_path: str
 
 
+@dataclass
+class ModelTrainerArtifacts:
+    trained_model_file_path: str
