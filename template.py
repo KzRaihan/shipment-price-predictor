@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 
-
+# Root folder
 project_name = "shipment"
 
 # List of Files
@@ -36,7 +36,7 @@ list_of_files = [
     "setup.py",  
     "config/model.yaml",  
     "config/schema.yaml", 
-    'test/test.py' 
+    # 'test/test.py' 
 
 ]
 
