@@ -15,15 +15,14 @@ ARTIFACTS_DIR = os.path.join(os.getcwd(), "artifacts", TIMESTAMP)
 MODEL_CONFIG_FILE = "config/model.yaml"
 SCHEMA_FILE_PATH = "config/schema.yaml"
 
+
+# MongoDB credentials and Database related constants
 DB_URL = environ["MONGO_DB_URL"]
-TEST_SIZE = 0.2
-
-
-# Database related constants
-DB_NAME = "Shipment_Kz"
+DB_NAME = "Shipment_DB"
 COLLECTION_NAME = "shipment_collection"
 
 # Data Ingestion related constants
+TEST_SIZE = 0.2
 DATA_INGESTION_ARTIFACTS_DIR = "DataIngestionArtifacts"
 DATA_INGESTION_TRAIN_DIR = "Train"
 DATA_INGESTION_TEST_DIR = "Test"

@@ -17,7 +17,7 @@ class MongoDBOperation:
         # print(self.client)
 
     
-
+    # take the database name and return the require Database
     def get_database(self, db_name) -> Database:
 
         """
@@ -41,7 +41,7 @@ class MongoDBOperation:
             raise shippingException(e, sys) from e
 
     
-
+    # take the database name and collection name then return the DataFrame
     def get_collection_as_dataframe(self, db_name, collection_name) -> DataFrame:
 
         """
