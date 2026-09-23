@@ -115,7 +115,7 @@ class DataIngestion:
     
 
 
-     # This method initiates data ingestion(Merge above two methods)
+     # This method initiates data ingestion
     def initiate_data_ingestion(self) -> DataIngestionArtifacts:
 
         """

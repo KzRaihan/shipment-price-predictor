@@ -13,12 +13,13 @@ from shipment.entity.artifacts_entity import (
 from shipment.exception import shippingException
 
 
-
+# FIRST START WITH THE SECOND CLASS
 class CostModel:
     def __init__(self, preprocessing_object: object, trained_model_object: object):
         self.preprocessing_object = preprocessing_object
         self.trained_model_object = trained_model_object
 
+    # This predict() method are use for new unseen data
     def predict(self, X) -> float:
 
         """
@@ -39,6 +40,7 @@ class CostModel:
         except Exception as e:
             raise shippingException(e, sys) from e
 
+    # dynamically finding the class name of our trained model.
     def __repr__(self):
         return f"{type(self.trained_model_object).__name__}()"
 
@@ -46,7 +48,7 @@ class CostModel:
         return f"{type(self.trained_model_object).__name__}()"
 
 
-
+# HERE, FIRST START
 class ModelTrainer:
     def __init__(
         self,
@@ -70,7 +72,7 @@ class ModelTrainer:
         """
         logging.info("Entered get_trained_models method of ModelTrainer class")
         try:
-            # Getting the model lists from model config file
+            # Getting the model lists from  config/model.yaml file
             model_config = self.model_trainer_config.UTILS.read_yaml_file(
                 filename=MODEL_CONFIG_FILE
             )
@@ -154,7 +156,7 @@ class ModelTrainer:
             logging.info("Got best model score,model and model name")
             print(best_model)
 
-            # Loading the preoprocessor object
+            # Loading the preprocessor object
             preprocessor_obj_file_path = (
                 self.data_transformation_artifact.transformed_object_file_path
             )

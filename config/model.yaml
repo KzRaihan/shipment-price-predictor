@@ -1,3 +1,20 @@
+# ==============================================================================
+# model.yaml
+#
+# Model Configuration for Shipment Price  Prediction
+#  - Model 1: RandomForestRegressor
+#  - Model 2: XGBRegressor
+#  - Model 3: CatBoostRegressor
+# Purpose:
+#     - This file contains model definitions and hyperparameter search spaces
+#     used by the Model Trainer component.
+#
+# Use and Benefits:
+#     - For hyperparameter tuning we use : neuro-mf (automatically hyperparameter tuning)
+#     - Allows new models to be added without changing ModelTrainer logic
+# ==============================================================================
+
+
 train_model:
   RandomForestRegressor:
     max_depth:
@@ -21,4 +38,23 @@ train_model:
     n_estimators:
     - 100
     - 200
-base_model_score: '0.1'
+
+  CatBoostRegressor:
+    learning_rate:
+    - 0.01
+    - 0.1
+    - 0.6
+    - 0.5
+    max_depth:
+    - 4
+    - 5
+    - 6
+    - 8
+    n_estimators:
+    - 100
+    - 200
+base_model_score: '0.6'
+
+
+
+

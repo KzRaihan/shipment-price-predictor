@@ -18,8 +18,8 @@ SCHEMA_FILE_PATH = "config/schema.yaml"
 
 # MongoDB credentials and Database related constants
 DB_URL = environ["MONGO_DB_URL"]
-DB_NAME = "Shipment_DB"
-COLLECTION_NAME = "shipment_collection"
+DB_NAME = "Shipment_Price_DB"
+COLLECTION_NAME = "Shipment_Price_collection"
 
 # Data Ingestion related constants
 TEST_SIZE = 0.2

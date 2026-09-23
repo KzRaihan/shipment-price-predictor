@@ -2,7 +2,6 @@ import sys
 from shipment.exception import shippingException
 from shipment.logger import logging
 from shipment.configuration.mongo_operations import MongoDBOperation
-
 from shipment.entity.artifacts_entity import (DataIngestionArtifacts,
                                               DataValidationArtifacts,
                                               DataTransformationArtifacts,
@@ -22,11 +21,11 @@ from shipment.components.model_trainer import ModelTrainer
 
 class TrainPipeline:
     def __init__(self):
-        self.mongo_op = MongoDBOperation()
         self.data_ingestion_config = DataIngestionConfig()
         self.data_validation_config = DataValidationConfig()
         self.data_transformation_config = DataTransformationConfig()
         self.model_trainer_config = ModelTrainerConfig()
+        self.mongo_op = MongoDBOperation()
 
     
 
@@ -93,6 +92,7 @@ class TrainPipeline:
         except Exception as e:
             raise shippingException(e, sys) from e
         
+    
 
     # This method is used to start the model trainer
     def start_model_trainer(
@@ -108,7 +108,9 @@ class TrainPipeline:
 
         except Exception as e:
             raise shippingException(e, sys) from e
-       
+
+
+        
     
 
      # This method is used to start the training pipeline
@@ -126,6 +128,7 @@ class TrainPipeline:
                 data_transformation_artifact=data_transformation_artifact
             )
 
+        
             logging.info("Exited the run_pipeline method of TrainPipeline class")
 
         except Exception as e:

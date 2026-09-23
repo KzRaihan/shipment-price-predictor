@@ -6,18 +6,28 @@ Before you run this project make sure you have MongoDB Atlas account and you hav
 
 Step 1. Cloning the repository.
 ```
-git clone https://github.com/KzRaihan/shipment-price-predictor.git
+    - git clone https://github.com/KzRaihan/shipment-price-predictor.git
+
 ```
+
 Step 2. Create a conda environment.
 ```
-conda create -n shipment python=3.11 -y
+    - conda create -n mlprojects python=3.11 -y
 ```
 ```
-conda activate shipment
+    - conda activate mlprojects
 ````
+
 Step 3. Install the requirements 
 ```
-pip install -r requirements.txt
+    - pip install -r requirements.txt
+
+```
+
+Step 4. run demo app 
+```
+    - python demo.py
+
 ```
 
 
