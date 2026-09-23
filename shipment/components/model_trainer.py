@@ -147,14 +147,36 @@ class ModelTrainer:
             # getting the models list and finding the best model with score
             list_of_trained_models = self.get_trained_models(train_df, test_df)
             logging.info("Got a list of tuple of model score,model and model name")
+
+            # Logging the score of every trained model (easy to compare all models)
+            for model_score, model, model_name in list_of_trained_models:
+                logging.info(f"Trained model - {model_name} | Score - {model_score}")
+
             (
                 best_model,
                 best_model_score,
+                best_model_name,          # ← new: the name is now returned
             ) = self.model_trainer_config.UTILS.get_best_model_with_name_and_score(
                 list_of_trained_models
             )
             logging.info("Got best model score,model and model name")
-            print(best_model)
+            logging.info(f"Best model name : {best_model_name}")
+            logging.info(f"Best model score : {best_model_score}")
+            print(best_model)            
+
+
+
+            # # getting the models list and finding the best model with score
+            # list_of_trained_models = self.get_trained_models(train_df, test_df)
+            # logging.info("Got a list of tuple of model score,model and model name")
+            # (
+            #     best_model,
+            #     best_model_score,
+            # ) = self.model_trainer_config.UTILS.get_best_model_with_name_and_score(
+            #     list_of_trained_models
+            # )
+            # logging.info("Got best model score,model and model name")
+            # print(best_model)
 
             # Loading the preprocessor object
             preprocessor_obj_file_path = (
@@ -191,7 +213,14 @@ class ModelTrainer:
                 logging.info("Saved the best model object path")
             else:
                 logging.info("No best model found with score more than base score")
-                raise "No best model found with score more than base score "
+                # NOTE: in Python 3 you cannot `raise` a plain string —
+                # you must raise an exception object (e.g. Exception(...))
+                raise Exception(
+                    f"No best model found with score more than base score. "
+                    f"Best model score: {best_model_score}, "
+                    f"base model score: {base_model_score}. "
+                    "Lower base_model_score in config/model.yaml or improve the model."
+                )
 
             # saving the Model trainer artifacts
             model_trainer_artifacts = ModelTrainerArtifacts(

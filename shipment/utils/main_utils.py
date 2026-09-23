@@ -3,6 +3,7 @@ import sys
 from typing import Dict, Tuple, List
 import dill
 import xgboost
+import catboost
 import numpy as np
 import pandas as pd
 import yaml
@@ -97,6 +98,10 @@ class MainUtils:
         try:
             if model_name.lower().startswith("xgb") is True:
                 model = xgboost.__dict__[model_name]()
+            elif model_name.lower().startswith("catboost") is True:   # ← NEW
+                # CatBoost is NOT a scikit-learn estimator, so it is not in
+                # all_estimators() — get it directly from the catboost package
+                model = catboost.__dict__[model_name]()               # ← NEW
             else:
                 model_idx = [model[0] for model in all_estimators()].index(model_name)
                 model = all_estimators().__getitem__(model_idx)[1]()
@@ -142,21 +147,48 @@ class MainUtils:
         except Exception as e:
             raise shippingException(e, sys) from e
 
+    # @staticmethod
+    # def get_best_model_with_name_and_score(model_list: list) -> Tuple[object, float]:
+    #     logging.info(
+    #         "Entered the get_best_model_with_name_and_score method of MainUtils class"
+    #     )
+    #     try:
+    #         best_score = max(model_list)[0]
+    #         best_model = max(model_list)[1]
+    #         logging.info(
+    #             "Exited the get_best_model_with_name_and_score method of MainUtils class"
+    #         )
+    #         return best_model, best_score
+
+    #     except Exception as e:
+    #         raise shippingException(e, sys) from e
+
+
     @staticmethod
-    def get_best_model_with_name_and_score(model_list: list) -> Tuple[object, float]:
+    def get_best_model_with_name_and_score(
+        model_list: list,
+    ) -> Tuple[object, float, str]:
         logging.info(
             "Entered the get_best_model_with_name_and_score method of MainUtils class"
         )
         try:
-            best_score = max(model_list)[0]
-            best_model = max(model_list)[1]
+            # Every item in model_list is a tuple (model_score, model, model_name)
+            # key= compares only the score — otherwise, if two models tie on score,
+            # plain max() would try to compare the model objects and crash
+            best_score, best_model, best_model_name = max(
+                model_list, key=lambda item: item[0]
+            )
+            logging.info(f"Best model is {best_model_name} with score {best_score}")
             logging.info(
                 "Exited the get_best_model_with_name_and_score method of MainUtils class"
             )
-            return best_model, best_score
+            return best_model, best_score, best_model_name
 
         except Exception as e:
             raise shippingException(e, sys) from e
+
+
+
 
     @staticmethod
     def load_object(file_path: str) -> object:
